@@ -7,4 +7,8 @@ from rest_framework.response import Response
 
 @api_view(['GET', 'POST'])
 def ping(request):
-    return Response({'success': True, 'ip': request.META.get('REMOTE_ADDR', None)})
+    meta = {}
+    for i in request.META:
+        meta[i] = str(request.META.get(i))
+
+    return Response({'success': True, 'meta': meta})
