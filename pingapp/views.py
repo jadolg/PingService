@@ -7,4 +7,9 @@ from rest_framework.response import Response
 
 @api_view(['GET', 'POST'])
 def ping(request):
-    return Response({'success': True, 'ip': request.META.get('HTTP_X_FORWARDED_FOR', None)})
+    ip = request.META.get('HTTP_X_FORWARDED_FOR', None)
+    data = request.get('http://ip-api.com/json/' + ip).json()
+    if data.get('status') != 'fail':
+        return Response({'success': True, 'ip': ip, 'geaodata': data})
+    else:
+        return Response({'success': True, 'ip': ip})
