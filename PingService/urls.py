@@ -23,5 +23,4 @@ from pingapp.views import ping
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', ping)
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\
-              + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
